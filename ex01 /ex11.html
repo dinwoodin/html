@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{border: 1px solid black;
+            margin: 5px;
+        }
+        #top{width: 900px; height: 100px;}
+        #menu{width: 900px; height: 50px;}
+        #middle{width: 900px; height: 900px;overflow: hidden;}
+        #bottom{width: 900px; height: 50px;}
+        #left{width: 376px; height:800px ;float: left;}
+        #right{width: 500px; height:800px ;float: right;}
+        .box{width: 487px;height: 250px;}
+        #left:hover{
+            background: chartreuse;
+        }
+        #top:active{
+            background: cyan;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="top"><b>top</b> </div>
+            <div id="menu"><b>menu</b> </div>
+                    <div id="middle">
+                        <div id="left">
+                         </div>
+                        <div id="right"><b>right</b>
+                            <div class="box"><img src ="a.jpg" width=487px height="250" ></div>
+                            <div class="box"><img src ="a.jpg" width=487px height="250" ></div>
+                            <div class="box"><img src ="a.jpg" width=487px height="250" ></div>
+                        </div>
+                    </div>
+                    <div id="bottom"><b>botteom</b></div>
+
+</body>
+
+</html>
