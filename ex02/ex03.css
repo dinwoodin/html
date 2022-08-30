@@ -1,0 +1,40 @@
+table{
+    width: 800px;
+    margin: 0px auto;
+    border-collapse: collapse;
+}
+td {
+    border-bottom: 1px solid grey;
+    padding: 10px;
+    font-size: 19px;
+    color: white;
+}
+#address .title {
+    background:rgba(115, 120, 133, 0.986);
+    text-align: center;
+}
+#address .rrr:hover{
+    background: rgba(16, 95, 185, 0.986);
+}
+#address .rrr:active{
+    background: rgba(16, 95, 185, 0.986);
+}
+#container, #address{
+    background: rgb(86, 88, 81);
+    overflow: hidden;
+    width: 1200px;
+    padding: 50px;
+    margin: 0px auto;
+    margin-bottom: 20px;
+}
+ .box {
+    background: rgba(16, 95, 185, 0.986);
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    float: left;
+    border: 5px dotted black;
+    box-shadow: 10px 10px 10px gray;
+    font-size: 30px;
+    text-align: center;
+}

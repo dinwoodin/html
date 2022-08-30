@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+
+    <title>쇼핑몰</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body{
+            width: 960px;
+            margin: 0px auto;
+        }
+        #bot{
+            text-align: right;
+            border-top: 5px solid gray; 
+            margin: 20px 0px;
+            padding: 10px 0px;
+
+        }
+        #top {
+            margin-top: 10px;
+            width: 960px;
+        }
+        #best{overflow: hidden; }
+
+        #best .box{
+            text-align: center;
+            width: 200px;
+            height: 320px;
+            float: left;
+            
+            margin: 18px;
+          
+        }
+
+        
+        #info{overflow: hidden;}
+        #info #notice, #info #news{
+            width: 440px;
+            height: 450px;
+            float: left;
+
+            margin: 10px;
+        }
+
+ 
+        .row .title{
+            width: 350px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 20px;
+            color: gray;
+            
+        }
+
+    </style>
+</head>
+
+<body>
+     <div id="top">
+        
+        <img src="11.jpg" width=960>
+    </div>
+    <dvi id="mid">
+         <div id="best"> </div>
+        <!--best 삼풍 목록-->
+        <script id="bestTemp" type="text/x-handlebars-template">
+            {{#each .}}
+                <div class="box">
+                    <img src="{{image}}"width=230 height="270">
+                    <div class="title">{{title}}</div>
+                </div>
+            {{/each}}
+        </script>
+
+           
+         <div id="info">
+            <!--공지사항-->
+            <table id="notice"></table>
+            <script id="notTemp" type="text/x-handlebars-template">
+                {{#each .}}
+                    <tr class="row">
+                        <td>{{id}}</td>
+                        <td><div class="title">{{title}}</div></td>
+             
+                    </tr>
+                {{/each}}
+            </script>
+    
+
+            <table id="news"></table>
+     
+            
+            
+        </div>        
+    </div>
+
+    <div id="bot">
+        <h3>Copyright 2022. 인천일보 아카데미.all right reserved</h3>
+    </div>
+</div>
+</body>
+    <script>
+        var bestDate=[
+            {"image" : "12.jpg", title:"커피광고"},
+            {"image" : "13.jpg", title:"커피광고"},
+            {"image" : "14.jpg", title:"커피광고"},
+            {"image" : "http://placekitten.com/130/230", title:"커피광고"},
+            ];
+        var bestTemp=Handlebars.compile($("#bestTemp").html());
+        $("#best").html(bestTemp(bestDate));
+
+        // $.ajax({
+        //     type:"get",
+        //     url:'https://jsonplaceholder.typicode.com/psrts'
+
+
+        // })
+
+        //posts 데이터 불러오기
+        $.ajax({
+            type:"get",
+            url:'https://jsonplaceholder.typicode.com/posts',
+            dataType:"json",
+            success:function(data){
+                var rows=[];
+                $(data).each(function(){
+                    if(this.id <=10){
+                        var row={"id" : this.id, "title":this.title};
+                        rows.push(row);
+                    }
+                });
+        
+                temp=Handlebars.compile($("#notTemp").html());
+                $("#notice").html(temp(rows));
+            }
+
+
+        })
+
+        $.ajax({
+            type:"get",
+            url:'https://jsonplaceholder.typicode.com/albums',
+            dataType:"json",
+            success:function(data){
+                var rows=[];
+                $(data).each(function(){
+                    if(this.id <=10){
+                        var row={"id" : this.id, "title":this.title};
+                        rows.push(row);
+                    }
+                });
+    
+            temp=Handlebars.compile($("#notTemp").html());
+                $("#news").html(temp(rows));
+
+            }
+
+
+
+        })
+    </script>
+
+</html>

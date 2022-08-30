@@ -1,0 +1,226 @@
+
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+
+    <title>한빛미디어</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            width: 960px;
+            margin: 0px auto;
+        }
+
+        #top {
+            margin-top: 20px;
+        }
+
+        #mid {
+     
+
+        }
+
+        #bot {
+            text-align: center;
+
+        }
+
+        #new ,#best {
+
+            padding-right: 30px;
+
+            overflow: hidden;
+            padding-left: 20px;
+
+
+        }
+
+        #list {
+            overflow: hidden;
+            height: 900px;
+            padding-left: 18px;
+            padding-right: 5px;
+
+        }
+
+        #new .box {
+            width: 150px;
+            height: 230px;
+
+            margin: 30px 15px;
+            float: left;
+
+
+        }
+        #best .box  {
+
+            width: 150px;
+            height: 230px;
+
+            margin: 30px 15px; 
+            float: left;
+      
+         
+
+        }
+
+
+
+
+        #new .box:last-child {
+            float: right;
+            margin: 30px 20px;
+        }
+  
+        #list .box {
+            text-align: center;
+            width: 200px;
+            height: 230px;
+
+            float: left;
+            margin: 50px 20px 50px 10px;
+
+        }
+
+        #meun span{
+            font-size: 25px;
+            padding-right: 30px;
+        }
+
+        #meun span:hover{
+            color: blue;
+            cursor: pointer;;
+        }
+
+    </style>
+
+
+
+</head>
+
+<body>
+    <div id="top">
+        <img src="123.png">
+    </div>
+
+    <div id="mid">
+        <div id=meun>
+            <span id="newBook">새로나온 책</span>
+            <span id="bestBook">베스트 샐러</span>
+        </div>
+    </div>
+
+
+
+    <!--새로나온책-->
+
+    <div id="new"></div>
+    <script id="newTemp" type="text/x-handlebars-template">
+        {{#each .}}
+                <div class="box">
+                    <img src = "{{image}}" width=150px>
+                    <div class = "title"> {{title}}</div>
+
+                </div>
+        {{/each}}
+    </script>
+    <!--베스트셀러-->
+    <div id = "best"> </div>
+    <script id="bestTemp" type="text/x-handlebars-template">
+        {{#each .}}
+                <div class="box">
+                    <img src = "{{image}}" width=150px>
+                    <div class = "title"> {{title}}</div>
+
+                </div>
+        {{/each}}
+    </script>
+
+
+
+
+    <!--도서목록-->
+    <div id="list"></div>
+    <Script id = "listTemp" type = "text/x-handlebars-template">
+        {{#each .}}
+        <div class="box">
+            <div class = "image" > <img src="{{image}}" width=170px></div>
+            <div class = "title">{{title}}</div>
+            <div class= "price" >{{price}}원</div>
+
+        </div>
+        {{/each}}    
+    </script>
+
+    <div id="bot">
+        <h3>Copyright 2022. 인천일보 아카데미.all right reserved</h3>
+    </div>
+
+</body>
+<Script>
+    newData = [
+        { "image": "1.png", "title": "트러스트" }, 
+        { "image": "2.png", "title": "싱가폴" }, 
+        { "image": "3.png", "title": "파이썬" }, 
+        { "image": "4.png", "title": "우분투" }, 
+        { "image": "5.png", "title": "스크립트" }
+
+    ];
+    newTemp = Handlebars.compile($("#newTemp").html());
+    $("#new").html(newTemp(newData));
+
+    bestData = [
+        { "image": "3.png", "title": "트러스트" }, 
+        { "image": "3.png", "title": "싱가폴" }, 
+        { "image": "3.png", "title": "파이썬" }, 
+        { "image": "3.png", "title": "우분투" }, 
+        { "image": "3.png", "title": "스크립트" }
+
+    ];
+    bestTemp = Handlebars.compile($("#bestTemp").html());
+    $("#best").html(bestTemp(bestData));
+
+
+    var listData = [
+        { "image": "6.png", "title": "트러스트", "price" : "25,000" },
+        { "image": "6.png", "title": "혼공씨", "price" :"27,000" },
+        { "image": "6.png", "title": "트럭", "price" : "24,900" },
+        { "image": "6.png", "title": "트러스트", "price" : "25,000" },
+        { "image": "7.png", "title": "저스티스","price":"30,000" }, 
+        { "image": "7.png", "title": "정의","price":"90,000" }, 
+        { "image": "7.png", "title": "리그","price":"95,000" }, 
+        { "image": "7.png", "title": "저스티스","price":"30,000" }
+    ];
+
+    listTemp = Handlebars.compile($("#listTemp").html());
+    $("#list").html(listTemp(listData));
+
+    $("#best").hide();
+    $("#newBook").css("border-bottom","5px solid red");
+
+//새로나온 책을 클릭 한 경우
+    $("#newBook").on("click", function(){
+        $("#new").show();
+        $("#best").hide();
+        $(this).css("border-bottom","5px solid red");
+        $("#bestBook").css("border","none");
+
+    });
+    $("#bestBook").on("click", function(){
+        $("#new").hide();
+        $("#best").show();
+        $(this).css("border-bottom","5px solid red");
+        $("#newBook").css("border","none");
+    });
+
+
+
+</Script>
+
+</html>

@@ -1,0 +1,147 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+    <title>홈페이지</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+      
+
+        }
+
+        body {
+            width: 960px;
+            margin: 0px auto;
+            background:deepskyblue;
+
+        }
+
+        #bot {
+            text-align: center;
+            border-top: 1px dotted gray;
+            margin-top: 20px;
+
+        }
+        #best{ 
+            width: 960px;
+            overflow: hidden;
+            background: white;
+            border: 5px solid black;
+        }
+        #best .box {
+            width: 300px;
+            height: 300px;
+            float: left;
+            border: 1px solid red;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            background: cadetblue;
+        }
+        #best .box:nth-child(2){
+            margin: 10px 27px;
+        }
+        #recent{
+            width: 960px;
+            overflow: hidden;
+            background:rgb(255, 255, 255);
+        }
+        #recent .box {
+            width: 300px;
+            height: 200px;
+            float: left;
+            border: 3px dotted yellow;
+            margin-bottom: 15px;
+            background: aqua;
+        }
+        #recent .box:active{
+            background: crimson;
+        }
+        #recent .box:nth-child(3n-1){     margin-left: 21px;  margin-right: 21px;      }
+
+        #best .box  {   text-align: center;    padding-top: 15px ;    }
+
+        .title{
+            margin-top: 5px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        #recent .box .image {  margin: 30px 10px 20px 20px; float:left; }
+        #recent .box .info {  margin-top: 50px; margin-right: 50px; float:right; background: aqua;}
+        #recent .box .info .title {background: aqua;}
+        #recent .box .info .price {background: aqua;}
+        #bot { background: white;}
+
+
+
+        img{border-radius: 15px;}
+    </style>
+</head>
+
+<body>
+    <div id="top"></div>
+    <img src="http://via.placeholder.com/960x200">
+    </div>
+    <div id="mid">
+        <div id="best"></div>
+        <script id = "temp" type = "text/x-handlebars-template">
+            {{#each .}}
+            <div class="box">
+                <img src="{{image}}" width=240px>
+                <div class = "title">{{title}}</div>
+
+            </div>
+            {{/each}}    
+        </script>
+
+
+        <!--최근 상품 목록-->
+        <div id="recent"></div>
+        <script id="temp1" type="text/x-handlebars-template">
+            {{#each .}}
+                <div class="box">
+                    <div class="image">
+                        <img src="{{image}}" width=150>
+                    </div>
+                    <div class="info">
+                        <div class="title">{{title}}</div>
+                        <div class="price">{{price}}원</div>
+                    </div>
+                </div>
+            {{/each}}
+        </script>
+        </div>
+    <div id="bot">
+        <h3>Copyright 2022. 인천일보 아카데미.all right reserved </h3>
+    </div>
+
+</body>
+<script>
+    var bestData=[{"image":"../ex01/a.jpg", "title" :"What is Lorem Ipsum?" },
+                  {"image":"http://via.placeholder.com/250x250", "title" :"Why do we use it?" },
+                  {"image":"../ex01/a.jpg", "title" :"Where does it come from?" }];
+    
+     var temp=Handlebars.compile($("#temp").html());
+     $("#best").html(temp(bestData));
+     var recentData=[
+         {"image":"1.jpg", "title":"뭘봐" ,"price":30000},   
+         {"image":"1.jpg", "title":"뭘봐","price":20000}, 
+         {"image":"1.jpg", "title":"뭘봐","price":15000}, 
+         {"image":"2.jpg", "title":"댕댕","price":38000},   
+         {"image":"2.jpg", "title":"댕댕","price":10000}, 
+         {"image":"2.jpg", "title":"댕댕","price":9000}, 
+         {"image":"4.jpg", "title":"?!?!?!?","price":32000},   
+         {"image":"4.jpg", "title":"?!?!?!?","price":29900}, 
+         {"image":"4.jpg", "title":"?!?!?!?","price":19990}
+     ];
+      
+     var temp1=Handlebars.compile($("#temp1").html());
+     $("#recent").html(temp1(recentData));
+
+           
+</script>
+
+</html>
